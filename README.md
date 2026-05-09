@@ -1,38 +1,16 @@
-# Project-Flow
+# Project-Flow v1.0
 
-Project-Flow is a lightweight, static protocol for AI coding agents. It defines a strict and universal workflow that any agent can follow to turn ideas into structured software without ambiguity or chaos.
-
----
-
-## 🧠 What this is
-
-This is **NOT** an application.  
-This is **NOT** a framework.  
-This is a **behavioral execution protocol** for AI agents. It standardizes how agents think, plan, and build software.
+**Protocolo de ejecución universal para agentes de IA de programación**
 
 ---
 
-## ⚙️ Core Workflow
-
-All agents using Project-Flow **MUST** follow this immutable flow:
-
-```
-CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
-```
-
-No step can be skipped.
-
----
-
-## 🚀 Activation
-
-To start a project inside any compatible AI coding agent:
+## 🚀 Activación
 
 ```bash
 /project "<idea>" --mode <safe|autopilot>
 ```
 
-**Example:**
+### Ejemplo
 
 ```bash
 /project "offline notes app" --mode autopilot
@@ -40,50 +18,59 @@ To start a project inside any compatible AI coding agent:
 
 ---
 
-## 🟢 Modes
+## ⚙️ Modos de Ejecución
 
-### SAFE MODE
-- Asks clarifying questions when needed
-- Requests confirmation before key decisions
-- Prioritizes correctness and user control
-
-### AUTOPILOT MODE
-- Minimizes questions
-- Uses reasonable defaults when needed
-- Executes continuously through all phases
-- Only stops on real technical blockers
-
----
-
-## 📦 Core Principle
-
-- Tasks must always be defined before any code is written
-- Execution must be step-by-step (no parallel task execution)
-- Every task must be verified before completion
-- If inconsistency is found, the system returns to PLAN
-
----
-
-## 📁 Repository Structure
-
-| File | Description |
+| Modo | Descripción |
 |------|-------------|
-| `FLOW.md` | Core immutable execution flow |
-| `commands.md` | Activation + mode definitions |
-| `state.json` | Runtime state template |
-| `memory.json` | Context memory template |
-| `decisions.md` | Architectural decisions log |
-| `log.md` | Execution tracking log |
-| `examples/` | Example flows |
+| **SAFE** | Realiza preguntas de clarificación, solicita confirmación antes de decisiones críticas |
+| **AUTOPILOT** | Ejecución continua con mínimos cuestionamientos, usa defaults razonables |
 
 ---
 
-## 🧠 Philosophy
+## 📋 Flujo Central
 
-Project-Flow does not replace AI agents. It constrains them into a deterministic engineering process so that outputs become predictable, structured, and reproducible across any environment.
+```
+CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
+```
+
+> **IMPORTANTE:** Este orden es **ESTRICTO** y **NO PUEDE** ser omitido.
 
 ---
 
-## 🔒 License
+## 📜 Reglas Principales
 
-MIT
+1. **No hay código sin TASKS** - Los tasks deben existir y ser válidos antes de codificar
+2. **Estructura de TASKS requerida** - Formato JSON específico con id, title, status, verified
+3. **TASK LOCK** - Una vez creados, los TASKS son inmutables
+4. **Ejecución de a un TASK** - Solo un task en estado "doing" a la vez
+5. **Verificación obligatoria** - Un task solo se marca "done" si está verificado
+6. **Auto-recuperación** - Si hay inconsistencia, volver a PLAN phase
+
+---
+
+## 📁 Archivos del Sistema
+
+| Archivo | Descripción |
+|---------|-------------|
+| `FLOW.md` | Flujo completo inmutable |
+| `commands.md` | Definición de comandos y modos |
+| `state.json` | Estado base del proyecto |
+| `memory.json` | Memoria del agente |
+| `decisions.md` | Log de decisiones |
+| `log.md` | Log de ejecución |
+
+---
+
+## 🧠 Comportamiento del Sistema
+
+- Convierte idea → plan estructurado → tasks ejecutables
+- Fuerza ejecución paso a paso
+- Previene codificar sin planificar
+- Asegura verificación antes de completar
+- Mantiene estado persistente del proyecto
+
+---
+
+## 🔒 Estado Final
+
+Project-Flow v1.0 es un protocolo de ejecución cerrado y consistente. No está diseñado para evolucionar durante su uso.
