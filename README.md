@@ -4,167 +4,265 @@
 
 # Project-Flow v1.0
 
-Universal execution protocol for AI coding agents.
+**Structured workflow for AI coding agents.**
+
+> **Important:** Project-Flow does **NOT** replace your AI agent. It only provides the workflow and execution rules. You still need an AI agent (OpenCode, Claude Code, Cursor, etc.) to use this protocol.
 
 ---
 
-## 🚀 Activation
+## 🚀 Quick Start
+
+### 1. Get the files
 
 ```bash
-/project "<idea>" --mode <safe|autopilot>
+git clone https://github.com/Ankhzz/project-flow.git
 ```
 
-### Example
+### 2. Where to put them
+
+Inside your project folder:
+
+```
+my-project/
+└── project-flow/ ← cloned here
+```
+
+### 3. (Optional) Add skills for your tech stack
+
+Skills are **optional** markdown files for specific technologies (Web3, wallets, etc.).
+
+**They are NOT part of Project-Flow** - you create or download them separately.
+
+```
+my-project/
+├── skills/
+│   ├── solidity-base.md ← for smart contracts
+│   └── wallet-auth.md ← for wallet connections
+└── project-flow/
+```
+
+> 💡 **Tip:** If you're working with Web3, contracts, wallets, etc., install your skills **BEFORE** starting the project. The agent will detect them automatically during execution.
+
+### 4. Start your AI agent
+
+Open your preferred agent:
+
+- OpenCode
+- Claude Code
+- Cursor (with custom commands)
+- Any AI coding agent with custom command support
+
+### 5. Activate Project-Flow
 
 ```bash
-/project "offline notes app" --mode autopilot
+/project "create a web3 dashboard with wallet login" --mode safe
 ```
 
----
+**That's it.** Project-Flow will guide the agent to:
 
-## ⚙️ Execution Modes
-
-| Mode | Description |
-|------|-------------|
-| **SAFE** | Asks clarifying questions, requests confirmation before critical decisions |
-| **AUTOPILOT** | Continuous execution with minimal questions, uses reasonable defaults |
+1. Ask about your idea
+2. Create a plan
+3. Build step by step
+4. Verify everything works
 
 ---
 
-## 📋 Core Flow
+## 🎯 Simple Flow
+
+```
+1. Download Project-Flow
+2. (Optional) Add your skills
+3. Open your AI agent
+4. Run: /project "your idea" --mode safe
+5. Agent builds your project
+```
+
+No chaos. No random code. Just structured building.
+
+---
+
+## 🟢 SAFE vs 🔴 AUTOPILOT
+
+### SAFE MODE - "Ask me before important decisions"
+
+**Best for:**
+
+- Complex projects you want to control
+- When you're not sure what you want
+- Learning the protocol
+- Security-sensitive projects
+
+**What it does:**
+
+- ✅ Asks clarifying questions
+- ✅ Shows options before deciding
+- ✅ Waits for your confirmation
+
+**Example:**
+
+```
+User: /project "e-commerce site" --mode safe
+Agent: Got it. To clarify:
+1. What stack? (React/Vue/Next.js)
+2. Payment integration? (Stripe/PayPal)
+3. Database requirements?
+```
+
+### AUTOPILOT MODE - "Just build it"
+
+**Best for:**
+
+- Standard projects with known patterns
+- When you trust reasonable defaults
+- Speed is priority
+
+**What it does:**
+
+- ✅ Uses smart defaults (Node.js, SQLite, etc.)
+- ✅ Makes assumptions based on context
+- ✅ Continues without stopping
+
+**Important:** AUTOPILOT still uses PLAN → TASKS → EXECUTION. The difference is it takes reasonable decisions automatically without asking you each step.
+
+**Example:**
+
+```
+User: /project "cli todo app" --mode autopilot
+Agent: Understood. Using defaults:
+- Stack: Node.js + TypeScript
+- Storage: SQLite local
+- UI: Terminal (TUI)
+Building...
+```
+
+### Quick Comparison
+
+| You want... | SAFE | AUTOPILOT |
+|-------------|------|-----------|
+| To be asked first | ✅ Yes | ❌ No |
+| Speed over control | ❌ No | ✅ Yes |
+| Standard project | ⚠️ Overkill | ✅ Perfect |
+| Complex/custom project | ✅ Perfect | ⚠️ Risky |
+
+---
+
+## 🧠 About Skills
+
+### What are skills?
+
+Skills are **optional** markdown files that guide the AI on specific technologies.
+
+**They are NOT part of Project-Flow** - they're separate files you create or download.
+
+### Where do they go?
+
+```
+my-project/
+├── skills/
+│   ├── solidity-base.md
+│   └── wallet-auth.md
+└── project-flow/
+```
+
+### How to use them?
+
+1. **Let agent discover:** Agent finds relevant skills automatically
+2. **Specify manually:**
+   ```bash
+   /project "web3 dashboard" --mode safe
+   # Uses: skills/solidity-base.md, skills/wallet-auth.md
+   ```
+
+### Are skills required?
+
+**No.** But they help:
+
+- Keep technical decisions consistent
+- Speed up planning
+- Ensure agent knows your stack
+- Maintain team consistency
+
+---
+
+## 📁 Project Structure
+
+After setup:
+
+```
+my-project/
+├── project-flow/ ← This protocol
+│   ├── README.md
+│   ├── FLOW.md
+│   └── ...
+├── skills/ ← Your optional skills
+│   └── solidity-base.md
+└── src/ ← Your actual code
+```
+
+**Important:** `project-flow/` folder must exist for the protocol to work.
+
+---
+
+## 🧠 How It Works (Technical)
+
+Project-Flow enforces a strict execution loop:
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
 ```
 
-> **IMPORTANT:** This order is **STRICT** and **CANNOT** be skipped.
+**Key rules:**
+
+- No code until tasks defined
+- One task at a time
+- Verify before marking done
+- Auto-recover on errors
+
+See [FLOW.md](./FLOW.md) for full technical details.
 
 ---
 
-## ⚙️ Execution Loop & Safety Rules
+## 🔒 System Rules
 
-Each task must follow this strict execution loop:
+These cannot be skipped:
 
-1. Select next "pending" task
-2. Mark task as "doing"
-3. Execute task fully
-4. Verify output against intent
-5. If valid → mark as "done"
-6. If invalid → fix immediately or return to PLAN phase
-
-**Rules:**
-- Only one task can be "doing" at any time
-- No task can be marked "done" without verification
-- Failed tasks cannot be skipped
+1. **No code before TASKS** - Define tasks first
+2. **TASK structure required** - Specific JSON format
+3. **TASK LOCK** - Tasks don't change once created
+4. **Single task execution** - One at a time
+5. **Mandatory verification** - Verify before done
+6. **Auto-recovery** - Return to plan on errors
 
 ---
 
-## ✅ Task Completion Criteria
+## 📚 Documentation
 
-**Terminate immediately when:**
-- Server responds correctly (HTTP 200/OK)
-- Core functionality works
-- Minimum validations pass
-
-**Do NOT continue** unnecessary verifications after successful build.
-
----
-
-## 📏 Output Limits
-
-**Never:**
-- List complete directories recursively
-- Show node_modules content
-- Print more than 200 consecutive lines
-- Use `Get-ChildItem -Recurse` without exclusions
-
-**When listing files:**
-- Show only relevant project files
-- Exclude: `node_modules/`, `.git/`, `dist/`, `build/`
+| File | What it's for |
+|------|---------------|
+| **README.md** | This guide |
+| **FLOW.md** | Core protocol rules |
+| **EXECUTION.md** | Output limits, servers |
+| **commands.md** | Command syntax |
+| **state.json** | State template |
+| **memory.json** | Memory structure |
+| **decisions.md** | Decision log |
+| **log.md** | Execution log |
 
 ---
 
-## 🖥️ Background Processes
+## 🛠️ Compatible Agents
 
-**All dev servers MUST run detached/background:**
-1. Start server in background
-2. Save PID or port
-3. Continue with other tasks
-4. Never wait indefinitely for live logs
-5. Cleanup on task completion
+Works with agents supporting custom commands:
 
----
+- ✅ OpenCode
+- ✅ Claude Code
+- ✅ Cursor (configured)
+- ✅ Custom AI coding agents
 
-## ⏱️ Timeout & Auto-Completion
-
-**If no real changes for 5 minutes:**
-1. Perform final validation
-2. Summarize state
-3. Terminate task cleanly
+**Requirement:** Must support slash-command style activation.
 
 ---
 
-## 🔇 Concise Mode (Default)
+## 🔒 License
 
-**Default behavior prioritizes:**
-- Short outputs
-- Actionable summaries
-- Minimal terminal spam
-
----
-
-## 🧠 Inconsistency Handling
-
-If any of the following occurs:
-- Missing dependencies
-- Unclear requirements during execution
-- Conflicting results between tasks
-- Unexpected errors
-
-**The agent MUST:**
-→ Return to PLAN phase  
-→ Adjust or regenerate TASKS if needed  
-→ Continue only after correction
-
----
-
-## 🔒 System Constraints (Hard Rules)
-
-1. **No code before TASKS exist** - Tasks must exist and be valid before coding
-2. **TASK structure required** - Specific JSON format with id, title, status, verified
-3. **TASK LOCK** - Once created, TASKS are immutable
-4. **Single task execution** - Only one task in "doing" status at a time
-5. **Mandatory verification** - A task is only marked "done" if verified
-6. **Auto-recovery** - If inconsistency, return to PLAN phase
-
----
-
-## 📁 System Files
-
-| File | Description |
-|------|-------------|
-| `README.md` | Main documentation |
-| `FLOW.md` | Complete immutable flow |
-| `EXECUTION.md` | Execution guidelines & limits |
-| `commands.md` | Command and mode definitions |
-| `state.json` | Base project state |
-| `memory.json` | Agent memory |
-| `decisions.md` | Decisions log |
-| `log.md` | Execution log |
-
----
-
-## 🧠 System Behavior
-
-- Converts idea → structured plan → executable tasks
-- Forces step-by-step execution
-- Prevents coding without planning
-- Ensures verification before completion
-- Maintains persistent project state
-- Prioritizes speed and stability over excessive logging
-
----
-
-## 🔒 Final State
-
-Project-Flow v1.0 is a closed and consistent execution protocol. It is not designed to evolve during use.
+MIT - See LICENSE file

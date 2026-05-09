@@ -4,167 +4,265 @@
 
 # Project-Flow v1.0
 
-Protocolo de ejecución universal para agentes de IA de programación.
+**Flujo estructurado para agentes de IA de programación.**
+
+> **Importante:** Project-Flow **NO** reemplaza tu agente de IA. Solo proporciona el flujo de trabajo y las reglas de ejecución. Todavía necesitás un agente de IA (OpenCode, Claude Code, Cursor, etc.) para usar este protocolo.
 
 ---
 
-## 🚀 Activación
+## 🚀 Inicio Rápido
+
+### 1. Obtener los archivos
 
 ```bash
-/project "<idea>" --mode <safe|autopilot>
+git clone https://github.com/Ankhzz/project-flow.git
 ```
 
-### Ejemplo
+### 2. Dónde ponerlos
+
+Dentro de tu carpeta de proyecto:
+
+```
+mi-proyecto/
+└── project-flow/ ← clonado aquí
+```
+
+### 3. (Opcional) Agregar skills para tu stack
+
+Skills son archivos markdown **opcionales** para tecnologías específicas (Web3, wallets, etc.).
+
+**NO son parte de Project-Flow** - los creás o descargás por separado.
+
+```
+mi-proyecto/
+├── skills/
+│   ├── solidity-base.md ← para contratos inteligentes
+│   └── wallet-auth.md ← para conexiones de wallet
+└── project-flow/
+```
+
+> 💡 **Tip:** Si vas a usar Web3, contratos, wallets, etc., instalá tus skills **ANTES** de iniciar el proyecto. El agente los detectará automáticamente durante la ejecución.
+
+### 4. Iniciar tu agente de IA
+
+Abrí tu agente preferido:
+
+- OpenCode
+- Claude Code
+- Cursor (con comandos personalizados)
+- Cualquier agente de IA con soporte de comandos personalizados
+
+### 5. Activar Project-Flow
 
 ```bash
-/project "offline notes app" --mode autopilot
+/project "crear dashboard web3 con login de wallet" --mode safe
 ```
 
----
+**Eso es todo.** Project-Flow guiará al agente para:
 
-## ⚙️ Modos de Ejecución
-
-| Modo | Descripción |
-|------|-------------|
-| **SAFE** | Realiza preguntas de clarificación, solicita confirmación antes de decisiones críticas |
-| **AUTOPILOT** | Ejecución continua con mínimos cuestionamientos, usa defaults razonables |
+1. Preguntar sobre tu idea
+2. Crear un plan
+3. Construir paso a paso
+4. Verificar que todo funcione
 
 ---
 
-## 📋 Flujo Central
+## 🎯 Flujo Simple
+
+```
+1. Descargás Project-Flow
+2. (Opcional) Agregás tus skills
+3. Abrís tu agente de IA
+4. Ejecutás: /project "tu idea" --mode safe
+5. El agente construye tu proyecto
+```
+
+Sin caos. Sin código aleatorio. Solo construcción estructurada.
+
+---
+
+## 🟢 MODO SAFE vs 🔴 MODO AUTOPILOT
+
+### MODO SAFE - "Preguntame antes de decisiones importantes"
+
+**Mejor para:**
+
+- Proyectos complejos que querés controlar
+- Cuando no estás seguro de lo que querés
+- Aprender el protocolo
+- Proyectos sensibles en seguridad
+
+**Qué hace:**
+
+- ✅ Realiza preguntas de clarificación
+- ✅ Muestra opciones antes de decidir
+- ✅ Espera tu confirmación
+
+**Ejemplo:**
+
+```
+Usuario: /project "sitio de e-commerce" --mode safe
+Agente: Entendido. Para clarificar:
+1. ¿Qué stack? (React/Vue/Next.js)
+2. ¿Integración de pagos? (Stripe/PayPal)
+3. ¿Requisitos de base de datos?
+```
+
+### MODO AUTOPILOT - "Solo constrúyelo"
+
+**Mejor para:**
+
+- Proyectos estándar con patrones conocidos
+- Cuando confiás en defaults razonables
+- La velocidad es prioridad
+
+**Qué hace:**
+
+- ✅ Usa defaults inteligentes (Node.js, SQLite, etc.)
+- ✅ Asume basado en contexto
+- ✅ Continúa sin detenerse
+
+**Importante:** AUTOPILOT sigue usando PLAN → TASKS → EXECUTION. La diferencia es que toma decisiones razonables automáticamente sin preguntarte cada paso.
+
+**Ejemplo:**
+
+```
+Usuario: /project "app de todo en CLI" --mode autopilot
+Agente: Entendido. Usando defaults:
+- Stack: Node.js + TypeScript
+- Almacenamiento: SQLite local
+- UI: Terminal (TUI)
+Construyendo...
+```
+
+### Comparación Rápida
+
+| Querés... | SAFE | AUTOPILOT |
+|-----------|------|-----------|
+| Que te pregunte | ✅ Sí | ❌ No |
+| Velocidad sobre control | ❌ No | ✅ Sí |
+| Proyecto estándar | ⚠️ Excesivo | ✅ Perfecto |
+| Proyecto complejo/personalizado | ✅ Perfecto | ⚠️ Arriesgado |
+
+---
+
+## 🧠 Sobre Skills
+
+### ¿Qué son los skills?
+
+Skills son archivos markdown **opcionales** que guían al agente en tecnologías específicas.
+
+**NO son parte de Project-Flow** - son archivos separados que creás o descargás.
+
+### ¿Dónde van?
+
+```
+mi-proyecto/
+├── skills/
+│   ├── solidity-base.md
+│   └── wallet-auth.md
+└── project-flow/
+```
+
+### ¿Cómo usarlos?
+
+1. **Dejar que el agente descubra:** El agente encuentra skills relevantes automáticamente
+2. **Especificar manualmente:**
+   ```bash
+   /project "dashboard web3" --mode safe
+   # Usa: skills/solidity-base.md, skills/wallet-auth.md
+   ```
+
+### ¿Son requeridos los skills?
+
+**No.** Pero ayudan a:
+
+- Mantener consistencia en decisiones técnicas
+- Acelerar la planificación
+- Asegurar que el agente conozca tu stack
+- Mantener consistencia en el equipo
+
+---
+
+## 📁 Estructura del Proyecto
+
+Después de configurar:
+
+```
+mi-proyecto/
+├── project-flow/ ← Este protocolo
+│   ├── README.md
+│   ├── FLOW.md
+│   └── ...
+├── skills/ ← Tus skills opcionales
+│   └── solidity-base.md
+└── src/ ← Tu código real
+```
+
+**Importante:** La carpeta `project-flow/` debe existir para que el protocolo funcione.
+
+---
+
+## 🧠 Cómo Funciona (Técnico)
+
+Project-Flow aplica un bucle de ejecución estricto:
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
 ```
 
-> **IMPORTANTE:** Este orden es **ESTRICTO** y **NO PUEDE** ser omitido.
+**Reglas clave:**
+
+- No hay código hasta definir tasks
+- Una tarea a la vez
+- Verificar antes de marcar done
+- Auto-recuperación en errores
+
+Ver [FLOW.md](./FLOW.md) para detalles técnicos completos.
 
 ---
 
-## ⚙️ Bucle de Ejecución y Reglas de Seguridad
+## 🔒 Reglas del Sistema
 
-Cada tarea debe seguir este estricto bucle de ejecución:
+No se pueden saltear:
 
-1. Seleccionar la próxima tarea "pending"
-2. Marcar la tarea como "doing"
-3. Ejecutar la tarea completamente
-4. Verificar el resultado contra la intención
-5. Si es válido → marcar como "done"
-6. Si es inválido → corregir inmediatamente o volver a PLAN phase
-
-**Reglas:**
-- Solo una tarea puede estar en "doing" a la vez
-- Ninguna tarea puede marcarse "done" sin verificación
-- Las tareas fallidas no pueden omitirse
+1. **No hay código sin TASKS** - Definir tasks primero
+2. **Estructura de TASKS requerida** - Formato JSON específico
+3. **TASK LOCK** - Tasks no cambian una vez creados
+4. **Ejecución de a un task** - De a uno por vez
+5. **Verificación obligatoria** - Verificar antes de done
+6. **Auto-recuperación** - Volver a plan en errores
 
 ---
 
-## ✅ Criterios de Finalización de Tareas
+## 📚 Documentación
 
-**Terminar inmediatamente cuando:**
-- El servidor responda correctamente (HTTP 200/OK)
-- La funcionalidad principal funcione
-- Las validaciones mínimas pasen
-
-**NO continuar** con verificaciones innecesarias después de completar el build.
-
----
-
-## 📏 Límites de Output
-
-**Nunca:**
-- Listar directorios completos recursivamente
-- Mostrar contenido de node_modules
-- Imprimir más de 200 líneas seguidas
-- Usar `Get-ChildItem -Recurse` sin exclusiones
-
-**Al listar archivos:**
-- Mostrar solo archivos relevantes del proyecto
-- Excluir: `node_modules/`, `.git/`, `dist/`, `build/`
+| Archivo | Para qué sirve |
+|---------|----------------|
+| **README.md** | Esta guía |
+| **FLOW.md** | Reglas del protocolo |
+| **EXECUTION.md** | Límites de output, servidores |
+| **commands.md** | Sintaxis de comandos |
+| **state.json** | Plantilla de estado |
+| **memory.json** | Estructura de memoria |
+| **decisions.md** | Log de decisiones |
+| **log.md** | Log de ejecución |
 
 ---
 
-## 🖥️ Procesos en Background
+## 🛠️ Agentes Compatibles
 
-**Todos los dev servers DEBEN ejecutarse detached/background:**
-1. Iniciar servidor en background
-2. Guardar PID o puerto
-3. Continuar con otras tareas
-4. Nunca esperar indefinidamente logs en vivo
-5. Cleanup al completar tarea
+Funciona con agentes que soportan comandos personalizados:
 
----
+- ✅ OpenCode
+- ✅ Claude Code
+- ✅ Cursor (configurado)
+- ✅ Agentes de IA personalizados
 
-## ⏱️ Timeout & Auto-Completado
-
-**Si no hay cambios reales por 5 minutos:**
-1. Realizar validación final
-2. Resumir estado
-3. Finalizar tarea limpiamente
+**Requisito:** Debe soportar activación estilo slash-command.
 
 ---
 
-## 🔇 Modo Conciso (Por Defecto)
+## 🔒 Licencia
 
-**El comportamiento por defecto prioriza:**
-- Outputs cortos
-- Resúmenes accionables
-- Mínimo spam de terminal
-
----
-
-## 🧠 Manejo de Inconsistencias
-
-Si ocurre algo de lo siguiente:
-- Dependencias faltantes
-- Requisitos poco claros durante la ejecución
-- Resultados conflictivos entre tareas
-- Errores inesperados
-
-**El agente DEBE:**
-→ Volver a PLAN phase  
-→ Ajustar o regenerar TASKS si es necesario  
-→ Continuar solo después de la corrección
-
----
-
-## 🔒 Restricciones del Sistema (Reglas Duras)
-
-1. **No hay código sin TASKS** - Los tasks deben existir y ser válidos antes de codificar
-2. **Estructura de TASKS requerida** - Formato JSON específico con id, title, status, verified
-3. **TASK LOCK** - Una vez creados, los TASKS son inmutables
-4. **Ejecución de a un TASK** - Solo un task en estado "doing" a la vez
-5. **Verificación obligatoria** - Un task solo se marca "done" si está verificado
-6. **Auto-recuperación** - Si hay inconsistencia, volver a PLAN phase
-
----
-
-## 📁 Archivos del Sistema
-
-| Archivo | Descripción |
-|---------|-------------|
-| `README.md` | Documentación principal |
-| `FLOW.md` | Flujo completo inmutable |
-| `EXECUTION.md` | Directrices de ejecución y límites |
-| `commands.md` | Definición de comandos y modos |
-| `state.json` | Estado base del proyecto |
-| `memory.json` | Memoria del agente |
-| `decisions.md` | Log de decisiones |
-| `log.md` | Log de ejecución |
-
----
-
-## 🧠 Comportamiento del Sistema
-
-- Convierte idea → plan estructurado → tasks ejecutables
-- Fuerza ejecución paso a paso
-- Previene codificar sin planificar
-- Asegura verificación antes de completar
-- Mantiene estado persistente del proyecto
-- Prioriza velocidad y estabilidad sobre logging excesivo
-
----
-
-## 🔒 Estado Final
-
-Project-Flow v1.0 es un protocolo de ejecución cerrado y consistente. No está diseñado para evolucionar durante su uso.
+MIT - Ver archivo LICENSE
