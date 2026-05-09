@@ -11,7 +11,7 @@ Ejemplo completo de ejecución de Project-Flow.
 ## Activación
 
 ```bash
-/project "offline notes app" --mode autopilot
+project: "offline notes app" --mode autopilot
 ```
 
 ---

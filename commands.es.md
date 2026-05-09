@@ -7,7 +7,7 @@
 ## Activación
 
 ```bash
-/project "<idea>" --mode <safe|autopilot>
+project: "<idea>" --mode <safe|autopilot>
 ```
 
 ### Parámetros
@@ -36,7 +36,7 @@
 
 **Ejemplo:**
 ```bash
-/project "tienda online con pagos" --mode safe
+project: "tienda online con pagos" --mode safe
 ```
 
 ---
@@ -56,7 +56,7 @@
 
 **Ejemplo:**
 ```bash
-/project "cli para notas" --mode autopilot
+project: "cli para notas" --mode autopilot
 ```
 
 ---

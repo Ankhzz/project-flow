@@ -55,7 +55,7 @@ Open your preferred agent:
 ### 5. Activate Project-Flow
 
 ```bash
-/project "create a web3 dashboard with wallet login" --mode safe
+project: "create a web3 dashboard with wallet login" --mode safe
 ```
 
 **That's it.** Project-Flow will guide the agent to:
@@ -73,7 +73,7 @@ Open your preferred agent:
 1. Download Project-Flow
 2. (Optional) Add your skills
 3. Open your AI agent
-4. Run: /project "your idea" --mode safe
+4. Run: project: "your idea" --mode safe
 5. Agent builds your project
 ```
 
@@ -101,7 +101,7 @@ No chaos. No random code. Just structured building.
 **Example:**
 
 ```
-User: /project "e-commerce site" --mode safe
+User: project: "e-commerce site" --mode safe
 Agent: Got it. To clarify:
 1. What stack? (React/Vue/Next.js)
 2. Payment integration? (Stripe/PayPal)
@@ -127,7 +127,7 @@ Agent: Got it. To clarify:
 **Example:**
 
 ```
-User: /project "cli todo app" --mode autopilot
+User: project: "cli todo app" --mode autopilot
 Agent: Understood. Using defaults:
 - Stack: Node.js + TypeScript
 - Storage: SQLite local
@@ -169,7 +169,7 @@ my-project/
 1. **Let agent discover:** Agent finds relevant skills automatically
 2. **Specify manually:**
    ```bash
-   /project "web3 dashboard" --mode safe
+   project: "web3 dashboard" --mode safe
    # Uses: skills/solidity-base.md, skills/wallet-auth.md
    ```
 
