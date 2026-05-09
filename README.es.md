@@ -59,6 +59,60 @@ Cada tarea debe seguir este estricto bucle de ejecución:
 
 ---
 
+## ✅ Criterios de Finalización de Tareas
+
+**Terminar inmediatamente cuando:**
+- El servidor responda correctamente (HTTP 200/OK)
+- La funcionalidad principal funcione
+- Las validaciones mínimas pasen
+
+**NO continuar** con verificaciones innecesarias después de completar el build.
+
+---
+
+## 📏 Límites de Output
+
+**Nunca:**
+- Listar directorios completos recursivamente
+- Mostrar contenido de node_modules
+- Imprimir más de 200 líneas seguidas
+- Usar `Get-ChildItem -Recurse` sin exclusiones
+
+**Al listar archivos:**
+- Mostrar solo archivos relevantes del proyecto
+- Excluir: `node_modules/`, `.git/`, `dist/`, `build/`
+
+---
+
+## 🖥️ Procesos en Background
+
+**Todos los dev servers DEBEN ejecutarse detached/background:**
+1. Iniciar servidor en background
+2. Guardar PID o puerto
+3. Continuar con otras tareas
+4. Nunca esperar indefinidamente logs en vivo
+5. Cleanup al completar tarea
+
+---
+
+## ⏱️ Timeout & Auto-Completado
+
+**Si no hay cambios reales por 5 minutos:**
+1. Realizar validación final
+2. Resumir estado
+3. Finalizar tarea limpiamente
+
+---
+
+## 🔇 Modo Conciso (Por Defecto)
+
+**El comportamiento por defecto prioriza:**
+- Outputs cortos
+- Resúmenes accionables
+- Mínimo spam de terminal
+
+---
+
 ## 🧠 Manejo de Inconsistencias
 
 Si ocurre algo de lo siguiente:
@@ -89,7 +143,9 @@ Si ocurre algo de lo siguiente:
 
 | Archivo | Descripción |
 |---------|-------------|
+| `README.md` | Documentación principal |
 | `FLOW.md` | Flujo completo inmutable |
+| `EXECUTION.md` | Directrices de ejecución y límites |
 | `commands.md` | Definición de comandos y modos |
 | `state.json` | Estado base del proyecto |
 | `memory.json` | Memoria del agente |
@@ -105,6 +161,7 @@ Si ocurre algo de lo siguiente:
 - Previene codificar sin planificar
 - Asegura verificación antes de completar
 - Mantiene estado persistente del proyecto
+- Prioriza velocidad y estabilidad sobre logging excesivo
 
 ---
 

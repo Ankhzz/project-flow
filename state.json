@@ -2,5 +2,9 @@
   "stage": "context",
   "mode": "safe",
   "progress": 0,
-  "current_task": null
+  "current_task": null,
+  "servers": [],
+  "start_time": null,
+  "last_change_time": null,
+  "timeout_minutes": 5
 }

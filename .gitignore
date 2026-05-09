@@ -21,6 +21,11 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Server tracking (generated during execution)
+.server.pid
+.server.port
+.servers.json
+
 # State files (opcional - si no quieres trackear estado)
 # state.json
 # memory.json

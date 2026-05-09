@@ -59,6 +59,60 @@ Each task must follow this strict execution loop:
 
 ---
 
+## ✅ Task Completion Criteria
+
+**Terminate immediately when:**
+- Server responds correctly (HTTP 200/OK)
+- Core functionality works
+- Minimum validations pass
+
+**Do NOT continue** unnecessary verifications after successful build.
+
+---
+
+## 📏 Output Limits
+
+**Never:**
+- List complete directories recursively
+- Show node_modules content
+- Print more than 200 consecutive lines
+- Use `Get-ChildItem -Recurse` without exclusions
+
+**When listing files:**
+- Show only relevant project files
+- Exclude: `node_modules/`, `.git/`, `dist/`, `build/`
+
+---
+
+## 🖥️ Background Processes
+
+**All dev servers MUST run detached/background:**
+1. Start server in background
+2. Save PID or port
+3. Continue with other tasks
+4. Never wait indefinitely for live logs
+5. Cleanup on task completion
+
+---
+
+## ⏱️ Timeout & Auto-Completion
+
+**If no real changes for 5 minutes:**
+1. Perform final validation
+2. Summarize state
+3. Terminate task cleanly
+
+---
+
+## 🔇 Concise Mode (Default)
+
+**Default behavior prioritizes:**
+- Short outputs
+- Actionable summaries
+- Minimal terminal spam
+
+---
+
 ## 🧠 Inconsistency Handling
 
 If any of the following occurs:
@@ -89,7 +143,9 @@ If any of the following occurs:
 
 | File | Description |
 |------|-------------|
+| `README.md` | Main documentation |
 | `FLOW.md` | Complete immutable flow |
+| `EXECUTION.md` | Execution guidelines & limits |
 | `commands.md` | Command and mode definitions |
 | `state.json` | Base project state |
 | `memory.json` | Agent memory |
@@ -105,6 +161,7 @@ If any of the following occurs:
 - Prevents coding without planning
 - Ensures verification before completion
 - Maintains persistent project state
+- Prioritizes speed and stability over excessive logging
 
 ---
 
