@@ -1,103 +1,107 @@
+[🇬🇧 English](commands.md) | [🇪🇸 Español](commands.es.md)
+
+---
+
 # Commands
 
-## Activación
+## Activation
 
 ```bash
 /project "<idea>" --mode <safe|autopilot>
 ```
 
-### Parámetros
+### Parameters
 
-| Parámetro | Descripción | Valores |
-|-----------|-------------|---------|
-| `<idea>` | Descripción natural de la idea/proyecto | string |
-| `--mode` | Modo de ejecución | `safe` \| `autopilot` |
+| Parameter | Description | Values |
+|-----------|-------------|--------|
+| `<idea>` | Natural description of the idea/project | string |
+| `--mode` | Execution mode | `safe` \| `autopilot` |
 
 ---
 
-## Modos de Ejecución
+## Execution Modes
 
 ### 🟢 SAFE MODE
 
-**Comportamiento:**
-- Realiza preguntas de clarificación cuando hay ambigüedad
-- Propone opciones en lugar de hacer suposiciones
-- Solicita confirmación antes de decisiones críticas
-- Prioriza la corrección sobre la velocidad
+**Behavior:**
+- Asks clarifying questions when there is ambiguity
+- Proposes options instead of making assumptions
+- Requests confirmation before critical decisions
+- Prioritizes correctness over speed
 
-**Casos de uso:**
-- Proyectos complejos con múltiples interpretaciones posibles
-- Usuarios que quieren control total sobre las decisiones
-- Cuando los requisitos no están completamente claros
+**Use cases:**
+- Complex projects with multiple possible interpretations
+- Users who want full control over decisions
+- When requirements are not completely clear
 
-**Ejemplo:**
+**Example:**
 ```bash
-/project "tienda online con pagos" --mode safe
+/project "online store with payments" --mode safe
 ```
 
 ---
 
 ### 🔴 AUTOPILOT MODE
 
-**Comportamiento:**
-- Minimiza las preguntas al usuario
-- Usa defaults razonables cuando es necesario
-- Continúa la ejecución sin detenerse entre fases
-- Solo se detiene en bloqueos técnicos o contradicciones
+**Behavior:**
+- Minimizes questions to the user
+- Uses reasonable defaults when necessary
+- Continues execution without stopping between phases
+- Only stops on technical blockers or contradictions
 
-**Casos de uso:**
-- Proyectos estándar con patrones conocidos
-- Usuarios experimentados que confían en los defaults
-- Cuando la velocidad es prioritaria
+**Use cases:**
+- Standard projects with known patterns
+- Experienced users who trust defaults
+- When speed is a priority
 
-**Ejemplo:**
+**Example:**
 ```bash
-/project "cli para notas" --mode autopilot
+/project "notes cli" --mode autopilot
 ```
 
 ---
 
-## Comparación
+## Comparison
 
-| Característica | SAFE MODE | AUTOPILOT MODE |
+| Characteristic | SAFE MODE | AUTOPILOT MODE |
 |----------------|-----------|----------------|
-| Preguntas | Frecuentes | Mínimas |
-| Confirmaciones | Requeridas | Omitidas |
-| Velocidad | Moderada | Máxima |
-| Control | Alto | Bajo |
-| Ideal para | Proyectos complejos | Proyectos estándar |
+| Questions | Frequent | Minimal |
+| Confirmations | Required | Omitted |
+| Speed | Moderate | Maximum |
+| Control | High | Low |
+| Ideal for | Complex projects | Standard projects |
 
 ---
 
-## Respuesta del Sistema
+## System Response
 
-Al activar el comando, el sistema responde con:
+When activating the command, the system responds with:
 
-1. **Reconocimiento del modo** seleccionado
-2. **Entrada en CONTEXT phase**
-3. **Primera pregunta/acción** según el modo
+1. **Mode recognition** selected
+2. **Entry to CONTEXT phase**
+3. **First question/action** according to mode
 
-**Ejemplo SAFE MODE:**
+**Example SAFE MODE:**
 ```
-🟢 SAFE MODE activado
-📍 CONTEXT phase iniciada
+🟢 SAFE MODE activated
+📍 CONTEXT phase started
 
-Entendido: "tienda online con pagos"
+Understood: "online store with payments"
 
-Para clarificar el contexto, necesito saber:
-1. ¿Qué stack tecnológico prefieres?
-2. ¿Requiere base de datos específica?
-3. ¿Algún requisito de seguridad?
+To clarify the context, I need to know:
+1. What technology stack do you prefer?
+2. Do you require a specific database?
+3. Any security requirements?
 ```
 
-**Ejemplo AUTOPILOT MODE:**
+**Example AUTOPILOT MODE:**
 ```
-🔴 AUTOPILOT MODE activado
-📍 CONTEXT phase iniciada
+🔴 AUTOPILOT MODE activated
+📍 CONTEXT phase started
 
-Entendido: "cli para notas"
+Understood: "notes cli"
 Stack: Node.js (default)
-Persistencia: Local file (default)
+Persistence: Local file (default)
 
-Continuando a CLARIFY phase...
+Continuing to CLARIFY phase...
 ```

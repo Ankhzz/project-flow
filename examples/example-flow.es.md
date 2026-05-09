@@ -2,13 +2,13 @@
 
 ---
 
-# Example Flow
+# Ejemplo de Flujo
 
-Complete example of Project-Flow execution.
+Ejemplo completo de ejecución de Project-Flow.
 
 ---
 
-## Activation
+## Activación
 
 ```bash
 /project "offline notes app" --mode autopilot
@@ -18,15 +18,15 @@ Complete example of Project-Flow execution.
 
 ## 1. CONTEXT
 
-**User input:**
+**Input del usuario:**
 > "offline notes app"
 
-**Initial interpretation:**
-- Notes application
-- Offline-first
-- Local persistence
+**Interpretación inicial:**
+- Aplicación de notas
+- Sin conexión (offline-first)
+- Persistencia local
 
-**State:**
+**Estado:**
 ```json
 {
   "stage": "context",
@@ -40,14 +40,14 @@ Complete example of Project-Flow execution.
 
 ## 2. CLARIFY
 
-**AUTOPILOT Mode - Defaults applied:**
+**Modo AUTOPILOT - Defaults aplicados:**
 - Stack: Node.js + TypeScript
-- Persistence: SQLite local
+- Persistencia: SQLite local
 - UI: Terminal (TUI)
 
-**No questions to user** (autopilot mode)
+**Sin preguntas al usuario** (modo autopilot)
 
-**State:**
+**Estado:**
 ```json
 {
   "stage": "clarify",
@@ -61,7 +61,7 @@ Complete example of Project-Flow execution.
 
 ## 3. PLAN
 
-**Proposed architecture:**
+**Arquitectura propuesta:**
 ```
 notes-app/
 ├── src/
@@ -72,12 +72,12 @@ notes-app/
 └── tsconfig.json
 ```
 
-**Components:**
-1. CLI interface (commands: add, list, delete)
+**Componentes:**
+1. CLI interface (comandos: add, list, delete)
 2. Storage layer (SQLite)
 3. Note entity (title, content, timestamp)
 
-**State:**
+**Estado:**
 ```json
 {
   "stage": "plan",
@@ -91,7 +91,7 @@ notes-app/
 
 ## 4. TASKS
 
-**Task list created:**
+**Lista de tareas creada:**
 
 ```json
 {
@@ -124,7 +124,7 @@ notes-app/
 }
 ```
 
-**State:**
+**Estado:**
 ```json
 {
   "stage": "tasks",
@@ -140,9 +140,9 @@ notes-app/
 
 ### Task 1: setup project
 
-**Transition:** `pending` → `doing`
+**Transición:** `pending` → `doing`
 
-**Actions:**
+**Acciones:**
 ```bash
 mkdir notes-app
 npm init -y
@@ -150,72 +150,72 @@ npm install typescript sqlite3 @types/node --save-dev
 npx tsc --init
 ```
 
-**Verification:**
-- ✅ package.json exists
-- ✅ tsconfig.json exists
-- ✅ node_modules installed
+**Verificación:**
+- ✅ package.json existe
+- ✅ tsconfig.json existe
+- ✅ node_modules instalado
 
-**Result:** `done`
+**Resultado:** `done`
 
 ---
 
 ### Task 2: create storage layer
 
-**Transition:** `pending` → `doing`
+**Transición:** `pending` → `doing`
 
-**Actions:**
-- Create `src/storage.ts`
-- Implement functions: init, save, findAll, delete
-- Configure SQLite
+**Acciones:**
+- Crear `src/storage.ts`
+- Implementar funciones: init, save, findAll, delete
+- Configurar SQLite
 
-**Verification:**
-- ✅ storage.ts exists
-- ✅ Functions exported
-- ✅ Connection tests OK
+**Verificación:**
+- ✅ storage.ts existe
+- ✅ Funciones exportadas
+- ✅ Tests de conexión OK
 
-**Result:** `done`
+**Resultado:** `done`
 
 ---
 
 ### Task 3: implement CLI commands
 
-**Transition:** `pending` → `doing`
+**Transición:** `pending` → `doing`
 
-**Actions:**
-- Create `src/index.ts`
-- Implement commands: add, list, delete
-- Parse CLI arguments
+**Acciones:**
+- Crear `src/index.ts`
+- Implementar comandos: add, list, delete
+- Parsear argumentos CLI
 
-**Verification:**
-- ✅ CLI functional
-- ✅ All commands respond
-- ✅ Help message available
+**Verificación:**
+- ✅ CLI funcional
+- ✅ Todos los comandos responden
+- ✅ Help message disponible
 
-**Result:** `done`
+**Resultado:** `done`
 
 ---
 
 ### Task 4: test all commands
 
-**Transition:** `pending` → `doing`
+**Transición:** `pending` → `doing`
 
-**Actions:**
-- Test: `notes add "title" "content"`
-- Test: `notes list`
-- Test: `notes delete <id>`
+**Acciones:**
+- Probar: `notes add "titulo" "contenido"`
+- Probar: `notes list`
+- Probar: `notes delete <id>`
 
-**Verification:**
-- ✅ Add creates note correctly
-- ✅ List shows all notes
-- ✅ Delete removes note
+**Verificación:**
+- ✅ Add crea nota correctamente
+- ✅ List muestra todas las notas
+- ✅ Delete elimina nota
 
-**Result:** `done`
+**Resultado:** `done`
 
 ---
 
 ## 6. DONE
 
-**Final state:**
+**Estado final:**
 ```json
 {
   "stage": "done",
@@ -225,11 +225,11 @@ npx tsc --init
 }
 ```
 
-**Summary:**
-- ✅ 4 tasks completed
+**Resumen:**
+- ✅ 4 tasks completados
 - ✅ 0 errors
 - ✅ 0 pending questions
-- ✅ Functional application
+- ✅ Aplicación funcional
 
 ---
 
@@ -239,11 +239,11 @@ npx tsc --init
 {
   "stack": "Node.js + TypeScript + SQLite",
   "decisions": [
-    "Use SQLite for local persistence",
-    "CLI TUI instead of graphical interface",
-    "TypeScript for type safety"
+    "Usar SQLite para persistencia local",
+    "CLI TUI en lugar de interfaz gráfica",
+    "TypeScript para type safety"
   ],
   "open_questions": [],
-  "constraints": ["offline-first", "local persistence"]
+  "constraints": ["offline-first", "persistencia local"]
 }
 ```

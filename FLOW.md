@@ -1,66 +1,70 @@
+[🇬🇧 English](FLOW.md) | [🇪🇸 Español](FLOW.es.md)
+
+---
+
 # FLOW - Core Execution Protocol
 
-## 🔁 Core Flow (INMUTABLE)
+## 🔁 Core Flow (IMMUTABLE)
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
 ```
 
-> **FLOW LOCK:** Saltar fases es **INVÁLIDO**. El orden es **ESTRICTO** e **INMUTABLE**.
+> **FLOW LOCK:** Skipping phases is **INVALID**. The order is **STRICT** and **IMMUTABLE**.
 
 ---
 
-## 📍 Fases Detalladas
+## 📍 Detailed Phases
 
 ### 1. CONTEXT
 
-Recopilación inicial del contexto del proyecto:
-- Idea principal del usuario
-- Requisitos explícitos
-- Restricciones conocidas
-- Stack tecnológico (si aplica)
+Initial project context collection:
+- Main user idea
+- Explicit requirements
+- Known constraints
+- Technology stack (if applicable)
 
-**Estado:** `stage: "context"`
+**State:** `stage: "context"`
 
 ---
 
 ### 2. CLARIFY
 
-Proceso de clarificación según el modo:
+Clarification process by mode:
 
 **SAFE MODE:**
-- Realiza preguntas cuando hay ambigüedad
-- Propone opciones en lugar de asumir
-- Solicita confirmación antes de decisiones críticas
-- Prioriza corrección sobre velocidad
+- Asks questions when there is ambiguity
+- Proposes options instead of assuming
+- Requests confirmation before critical decisions
+- Prioritizes correctness over speed
 
 **AUTOPILOT MODE:**
-- Minimiza preguntas
-- Usa defaults razonables cuando es necesario
-- Continúa ejecución sin detenerse entre fases
-- Solo se detiene en bloqueos técnicos o contradicciones
+- Minimizes questions
+- Uses reasonable defaults when necessary
+- Continues execution without stopping between phases
+- Only stops on technical blockers or contradictions
 
-**Estado:** `stage: "clarify"`
+**State:** `stage: "clarify"`
 
 ---
 
 ### 3. PLAN
 
-Diseño del plan estructurado:
-- Arquitectura propuesta
-- Desglose en componentes
-- Dependencias identificadas
-- Estrategia de implementación
+Structured plan design:
+- Proposed architecture
+- Component breakdown
+- Identified dependencies
+- Implementation strategy
 
-**Regla:** Cualquier modificación estructural requiere volver a esta fase.
+**Rule:** Any structural modification requires returning to this phase.
 
-**Estado:** `stage: "plan"`
+**State:** `stage: "plan"`
 
 ---
 
 ### 4. TASKS
 
-Creación de la lista de tareas ejecutables:
+Creation of executable task list:
 
 ```json
 {
@@ -75,79 +79,79 @@ Creación de la lista de tareas ejecutables:
 }
 ```
 
-**TASK LOCK:** Una vez creados, los TASKS son **INMUTABLES**. Cualquier modificación requiere volver a **PLAN phase**.
+**TASK LOCK:** Once created, TASKS are **IMMUTABLE**. Any modification requires returning to **PLAN phase**.
 
-**Estado:** `stage: "tasks"`
+**State:** `stage: "tasks"`
 
 ---
 
 ### 5. EXECUTION LOOP
 
-**Motor de ejecución (CORE ENGINE):**
+**Core Engine:**
 
-Para cada task:
-1. Seleccionar el próximo task con status `"pending"`
-2. Marcar como `"doing"`
-3. Ejecutar completamente
-4. Verificar resultado
-5. Si éxito: marcar `"done"`, actualizar memoria/estado
-6. Si fallo: intentar fix inmediato
-7. Si problema estructural: volver a **PLAN/CLARIFY**
+For each task:
+1. Select next task with status `"pending"`
+2. Mark as `"doing"`
+3. Execute completely
+4. Verify result
+5. If success: mark `"done"`, update memory/state
+6. If failure: attempt immediate fix
+7. If structural problem: return to **PLAN/CLARIFY**
 
-**Reglas de ejecución:**
-- Solo UN task en `"doing"` a la vez
-- No se permite ejecución paralela
-- Verificación obligatoria antes de `"done"`
+**Execution Rules:**
+- Only ONE task in `"doing"` at a time
+- Parallel execution not allowed
+- Mandatory verification before `"done"`
 
-**Estado:** `stage: "execution"`
+**State:** `stage: "execution"`
 
 ---
 
 ### 6. DONE
 
-Completado cuando:
-- Todos los tasks están `"done"`
-- No hay dependencias faltantes
-- El resultado coincide con la intención original
+Completed when:
+- All tasks are `"done"`
+- No missing dependencies
+- Result matches original intent
 
-**Estado:** `stage: "done"`
-**Progreso:** `progress: 100`
+**State:** `stage: "done"`
+**Progress:** `progress: 100`
 
 ---
 
-## 🔄 Auto-Recuperación
+## 🔄 Auto-Recovery
 
 **AUTO-RECOVERY RULE:**
 
-Si se detecta inconsistencia o conflicto estructural:
-1. Detener ejecución inmediatamente
-2. Volver a **PLAN phase**
-3. Re-evaluar estructura
-4. Actualizar TASKS si es necesario
-5. Continuar desde TASKS phase
+If inconsistency or structural conflict is detected:
+1. Stop execution immediately
+2. Return to **PLAN phase**
+3. Re-evaluate structure
+4. Update TASKS if necessary
+5. Continue from TASKS phase
 
 ---
 
-## 📊 Estados Válidos
+## 📊 Valid States
 
-| Stage | Descripción |
+| Stage | Description |
 |-------|-------------|
-| `context` | Recopilación inicial |
-| `clarify` | Preguntas y clarificación |
-| `plan` | Diseño de arquitectura |
-| `tasks` | Creación de tasks |
-| `execution` | Ejecución del loop |
-| `done` | Completado |
+| `context` | Initial collection |
+| `clarify` | Questions and clarification |
+| `plan` | Architecture design |
+| `tasks` | Task creation |
+| `execution` | Loop execution |
+| `done` | Completed |
 
 ---
 
-## 🚫 Restricciones (HARD CONSTRAINTS)
+## 🚫 Hard Constraints
 
-1. **HARD GATE BEFORE CODE** - No hay código hasta que TASKS exista y sea válido
-2. **TASK STRUCTURE REQUIREMENT** - Formato JSON específico requerido
-3. **TASK LOCK** - Inmutabilidad de TASKS después de creación
-4. **SINGLE TASK EXECUTION** - Un task a la vez
-5. **TASK VERIFICATION RULE** - Verificación obligatoria para "done"
-6. **EXECUTION LOOP** - Seguir el loop estrictamente
-7. **FLOW LOCK** - No saltar fases
-8. **AUTO-RECOVERY** - Volver a PLAN ante inconsistencias
+1. **HARD GATE BEFORE CODE** - No code until TASKS exists and is valid
+2. **TASK STRUCTURE REQUIREMENT** - Specific JSON format required
+3. **TASK LOCK** - TASKS immutability after creation
+4. **SINGLE TASK EXECUTION** - One task at a time
+5. **TASK VERIFICATION RULE** - Mandatory verification for "done"
+6. **EXECUTION LOOP** - Follow loop strictly
+7. **FLOW LOCK** - Do not skip phases
+8. **AUTO-RECOVERY** - Return to PLAN on inconsistencies

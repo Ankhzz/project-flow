@@ -1,16 +1,20 @@
-# Project-Flow v1.0
-
-**Protocolo de ejecución universal para agentes de IA de programación**
+[🇬🇧 English](README.md) | [🇪🇸 Español](README.es.md)
 
 ---
 
-## 🚀 Activación
+# Project-Flow v1.0
+
+Universal execution protocol for AI coding agents.
+
+---
+
+## 🚀 Activation
 
 ```bash
 /project "<idea>" --mode <safe|autopilot>
 ```
 
-### Ejemplo
+### Example
 
 ```bash
 /project "offline notes app" --mode autopilot
@@ -18,59 +22,92 @@
 
 ---
 
-## ⚙️ Modos de Ejecución
+## ⚙️ Execution Modes
 
-| Modo | Descripción |
+| Mode | Description |
 |------|-------------|
-| **SAFE** | Realiza preguntas de clarificación, solicita confirmación antes de decisiones críticas |
-| **AUTOPILOT** | Ejecución continua con mínimos cuestionamientos, usa defaults razonables |
+| **SAFE** | Asks clarifying questions, requests confirmation before critical decisions |
+| **AUTOPILOT** | Continuous execution with minimal questions, uses reasonable defaults |
 
 ---
 
-## 📋 Flujo Central
+## 📋 Core Flow
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
 ```
 
-> **IMPORTANTE:** Este orden es **ESTRICTO** y **NO PUEDE** ser omitido.
+> **IMPORTANT:** This order is **STRICT** and **CANNOT** be skipped.
 
 ---
 
-## 📜 Reglas Principales
+## ⚙️ Execution Loop & Safety Rules
 
-1. **No hay código sin TASKS** - Los tasks deben existir y ser válidos antes de codificar
-2. **Estructura de TASKS requerida** - Formato JSON específico con id, title, status, verified
-3. **TASK LOCK** - Una vez creados, los TASKS son inmutables
-4. **Ejecución de a un TASK** - Solo un task en estado "doing" a la vez
-5. **Verificación obligatoria** - Un task solo se marca "done" si está verificado
-6. **Auto-recuperación** - Si hay inconsistencia, volver a PLAN phase
+Each task must follow this strict execution loop:
 
----
+1. Select next "pending" task
+2. Mark task as "doing"
+3. Execute task fully
+4. Verify output against intent
+5. If valid → mark as "done"
+6. If invalid → fix immediately or return to PLAN phase
 
-## 📁 Archivos del Sistema
-
-| Archivo | Descripción |
-|---------|-------------|
-| `FLOW.md` | Flujo completo inmutable |
-| `commands.md` | Definición de comandos y modos |
-| `state.json` | Estado base del proyecto |
-| `memory.json` | Memoria del agente |
-| `decisions.md` | Log de decisiones |
-| `log.md` | Log de ejecución |
+**Rules:**
+- Only one task can be "doing" at any time
+- No task can be marked "done" without verification
+- Failed tasks cannot be skipped
 
 ---
 
-## 🧠 Comportamiento del Sistema
+## 🧠 Inconsistency Handling
 
-- Convierte idea → plan estructurado → tasks ejecutables
-- Fuerza ejecución paso a paso
-- Previene codificar sin planificar
-- Asegura verificación antes de completar
-- Mantiene estado persistente del proyecto
+If any of the following occurs:
+- Missing dependencies
+- Unclear requirements during execution
+- Conflicting results between tasks
+- Unexpected errors
+
+**The agent MUST:**
+→ Return to PLAN phase  
+→ Adjust or regenerate TASKS if needed  
+→ Continue only after correction
 
 ---
 
-## 🔒 Estado Final
+## 🔒 System Constraints (Hard Rules)
 
-Project-Flow v1.0 es un protocolo de ejecución cerrado y consistente. No está diseñado para evolucionar durante su uso.
+1. **No code before TASKS exist** - Tasks must exist and be valid before coding
+2. **TASK structure required** - Specific JSON format with id, title, status, verified
+3. **TASK LOCK** - Once created, TASKS are immutable
+4. **Single task execution** - Only one task in "doing" status at a time
+5. **Mandatory verification** - A task is only marked "done" if verified
+6. **Auto-recovery** - If inconsistency, return to PLAN phase
+
+---
+
+## 📁 System Files
+
+| File | Description |
+|------|-------------|
+| `FLOW.md` | Complete immutable flow |
+| `commands.md` | Command and mode definitions |
+| `state.json` | Base project state |
+| `memory.json` | Agent memory |
+| `decisions.md` | Decisions log |
+| `log.md` | Execution log |
+
+---
+
+## 🧠 System Behavior
+
+- Converts idea → structured plan → executable tasks
+- Forces step-by-step execution
+- Prevents coding without planning
+- Ensures verification before completion
+- Maintains persistent project state
+
+---
+
+## 🔒 Final State
+
+Project-Flow v1.0 is a closed and consistent execution protocol. It is not designed to evolve during use.
