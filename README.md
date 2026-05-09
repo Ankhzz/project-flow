@@ -205,7 +205,7 @@ my-project/
 
 ## 🧠 How It Works (Technical)
 
-Project-Flow enforces a strict execution loop:
+Project-Flow follows a structured execution flow:
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE

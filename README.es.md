@@ -205,7 +205,7 @@ mi-proyecto/
 
 ## 🧠 Cómo Funciona (Técnico)
 
-Project-Flow aplica un bucle de ejecución estricto:
+Project-Flow sigue un flujo de ejecución estructurado:
 
 ```
 CONTEXT → CLARIFY → PLAN → TASKS → EXECUTION LOOP → DONE
