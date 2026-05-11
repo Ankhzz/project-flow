@@ -261,10 +261,13 @@ Works with agents supporting custom commands:
 
 **Requirement:** Must support slash-command style activation.
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Ankhzz/project-flow)
+
 
 ---
 
 ## 🔒 License
 
 MIT - See LICENSE file
+
+---
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Ankhzz/project-flow)
